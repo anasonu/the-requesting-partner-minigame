@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    background-color: lightgray;
+  }
+  
+  #my-canvas {
+    background-color: darkgray;
+  }
+  
+  #start-btn, #restart-btn {
+    background-color: lightseagreen;
+    color: white;
+    padding: 20px;
+    font-size: 20px;
+    margin-top: 40px;
+    border-radius: 8px; 
+    border: none;
+    box-shadow: 2px 0px 10px rgb(4, 42, 40, 0.4);
+  }
+
+  #start-btn:hover, #restart-btn:hover {
+    background-color: rgb(5, 129, 123);
+  }  
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+  }
+  
+  #my-canvas, #gameover-screen {
+    display: none;
+  }
+  
+  
