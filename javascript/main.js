@@ -17,9 +17,9 @@ const startGame = () => {
 }
 
 const keyPress = (event) => {
-    if(event.code === "ArrowUp") {
+    if(event.code === "KeyW" || event.code === "ArrowUp") {
         game.player.movePlayerUp();
-    } else if(event.code === "ArrowDown") {
+    } else if(event.code === "KeyS" || event.code === "ArrowDown") {
         game.player.movePlayerDown();
     }
 }
