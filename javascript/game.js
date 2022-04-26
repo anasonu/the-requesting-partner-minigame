@@ -6,59 +6,145 @@ class Game {
         this.player = new Player();
         this.partner = new Partner();
        
-        this.toiletPaperArr = [];
-        
+        this.toiletPaperArr = [];   
         this.dogArr = [];
-
         this.clothelineArr = [];
-
         this.boxArr = [];
+        this.shootArr = [];
+        
+        this.isGameOn = true;
+        
     }
+
     // Función para las colisiones
 
     gameOverCollision = () => {
+        if(this.player.x <= this.partner.x) {
+            this.isGameOn = false;
+            canvas.style.display = "none";
+            counter.style.display = "none";
+            gameOverScreen.style.display = "flex"
+
+        }
+
         this.toiletPaperArr.forEach((eachToiletPaper, index) => {
             if(this.player.x < eachToiletPaper.x + eachToiletPaper.w &&
                 this.player.x + this.player.w > eachToiletPaper.x &&
                 this.player.y < eachToiletPaper.y + eachToiletPaper.h &&
                 this.player.h + this.player.y > eachToiletPaper.y) {
-                    this.player.x -= 80;
+                    this.player.x -= 100;
                     this.toiletPaperArr.splice(index, 1);
                 }
+            
+            if(this.player.x > eachToiletPaper.x) {
+                this.toiletPaperArr.splice(index, 1);
+                points.innerText = Number(points.innerText) + 1;
+            }
+        })
+
+        this.dogArr.forEach((eachDog, index) => {
+            if(this.player.x < eachDog.x + eachDog.w &&
+                this.player.x + this.player.w > eachDog.x &&
+                this.player.y < eachDog.y + eachDog.h &&
+                this.player.h + this.player.y > eachDog.y) {
+                    this.player.x -= 100;
+                    this.dogArr.splice(index, 1);
+                }
+            
+            if(this.player.x > eachDog.x) {
+                this.dogArr.splice(index, 1);
+                points.innerText = Number(points.innerText) + 1;
+            }
+        })
+
+        this.clothelineArr.forEach((eachClotheline, index) => {
+            if(this.player.x < eachClotheline.x + eachClotheline.w &&
+                this.player.x + this.player.w > eachClotheline.x &&
+                this.player.y < eachClotheline.y + eachClotheline.h &&
+                this.player.h + this.player.y > eachClotheline.y) {
+                    this.player.x -= 100;
+                    this.clothelineArr.splice(index, 1);
+                }
+
+            if(this.player.x > eachClotheline.x) {
+                this.clothelineArr.splice(index, 1);
+                points.innerText = Number(points.innerText) + 1;
+            }    
+        })
+
+        this.boxArr.forEach((eachBox, index) => {
+            if(this.player.x < eachBox.x + eachBox.w &&
+                this.player.x + this.player.w > eachBox.x &&
+                this.player.y < eachBox.y + eachBox.h &&
+                this.player.h + this.player.y > eachBox.y) {
+                    this.player.x -= 100;
+                    this.boxArr.splice(index, 1);
+                }
+
+            if(this.player.x > eachBox.x) {
+                this.boxArr.splice(index, 1);
+                points.innerText = Number(points.innerText) + 1;
+            }  
+        })
+
+        this.shootArr.forEach((eachShoot, index) => {
+            if(this.player.x < eachShoot.x + eachShoot.w &&
+                this.player.x + this.player.w > eachShoot.x &&
+                this.player.y < eachShoot.y + eachShoot.h &&
+                this.player.h + this.player.y > eachShoot.y) {
+                    this.player.x -= 100;
+                    this.shootArr.splice(index, 1);
+                }
+
+            if(eachShoot.x > canvas.width) {
+                this.shootArr.splice(index, 1);
+                points.innerText = Number(points.innerText) + 1;
+            }  
         })
     }
 
-    addNewToiletPaper = () => {
-        let randomPosition = Math.random() * ((canvas.height - 40) - 160 + 1) + 160;
+    addNewShoot = () => {
+        if(this.player.x <= 170) {
+            return false; // => Cuando el jugador retrocede hasta cierto punto, el personaje de atrás deja de disparar.
+        }
 
-        if(this.toiletPaperArr.length === 0 || this.toiletPaperArr[this.toiletPaperArr.length - 1].x < 200) {
+        if(this.shootArr.length === 0 || this.shootArr[this.shootArr.length - 1].x > 1000) {
+            let newShoot = new Shoot()
+            this.shootArr.push(newShoot);
+        }
+    }
+
+    addNewToiletPaper = () => {
+        let randomPosition = Math.random() * ((canvas.height - 40) - 300 + 1) + 300;
+
+        if(this.toiletPaperArr.length === 0 || this.toiletPaperArr[this.toiletPaperArr.length - 1].x < 370) {
             let newToiletPaper = new ToiletPaper(randomPosition);
             this.toiletPaperArr.push(newToiletPaper);
         }
     }
 
     addNewDog = () => {
-        let randomPosition = Math.random() * ((canvas.height - 40) - 160 + 1) + 160;
+        let randomPosition = Math.random() * ((canvas.height - 40) - 300 + 1) + 300;
 
-        if(this.dogArr.length === 0 || this.dogArr[this.dogArr.length - 1].x < 150) {
+        if(this.dogArr.length === 0 || this.dogArr[this.dogArr.length - 1].x < 350) {
             let newDog = new Dog(randomPosition);
             this.dogArr.push(newDog);
         }
     }
 
     addNewClotheline = () => {
-        let randomPosition = Math.random() * ((canvas.height - 40) - 160 + 1) + 160;
+        let randomPosition = Math.random() * ((canvas.height - 40) - 300 + 1) + 300;
 
-        if(this.clothelineArr.length === 0 || this.clothelineArr[this.clothelineArr.length -1].x < 100) {
+        if(this.clothelineArr.length === 0 || this.clothelineArr[this.clothelineArr.length -1].x < 400) {
             let newClotheline = new Clotheline(randomPosition);
             this.clothelineArr.push(newClotheline);
         }
     }
 
     addNewBox = () => {
-        let randomPosition = Math.random() * ((canvas.height - 40) - 160 + 1) + 160;
+        let randomPosition = Math.random() * ((canvas.height - 40) - 300 + 1) + 300;
 
-        if(this.boxArr.length === 0 || this.boxArr[this.boxArr.length - 1].x < 50) {
+        if(this.boxArr.length === 0 || this.boxArr[this.boxArr.length - 1].x < 430) {
             let newBox = new Box(randomPosition);
             this.boxArr.push(newBox);
         }
@@ -69,10 +155,12 @@ class Game {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         //. 2. Acciones o movimiento de los elementos
+
+        this.partner.movePartner();
+
         this.toiletPaperArr.forEach((eachToiletPaper) => {
             eachToiletPaper.moveToiletPaper();
         })
-
         this.addNewToiletPaper();
 
         this.dogArr.forEach((eachDog) => {
@@ -89,6 +177,11 @@ class Game {
             eachBox.moveBox();
         })
         this.addNewBox();
+
+        this.shootArr.forEach((eachShoot) => {
+            eachShoot.moveShoot();
+        });
+        this.addNewShoot();
         
 
         // 3. Chequear colisiones
@@ -115,21 +208,13 @@ class Game {
             eachBox.drawBox();
         })
 
-        // this.couchArr.forEach((eachCouch) => {
-        //     eachCouch.drawCouch();
-        // })
-
-        // this.toiletPaperArr.forEach((eachToiletPaper) => {
-        //     if(this.player.y > eachToiletPaper.y) {
-        //         eachToiletPaper.drawToiletPaper();
-        //         this.player.drawPlayer();
-        //     } else {
-        //         this.player.drawPlayer();
-        //         eachToiletPaper.drawToiletPaper();
-        //     }
-        // })
+        this.shootArr.forEach((eachShoot) => {
+            eachShoot.drawShoot();
+        })
 
         // 5. Control y recursividad
-        requestAnimationFrame(this.gameLoop);
+        if (this.isGameOn) {
+            requestAnimationFrame(this.gameLoop);
+          }
     }
 }
