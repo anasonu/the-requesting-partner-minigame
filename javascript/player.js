@@ -3,10 +3,10 @@ class Player {
     // Múltiples propiedades del player
         this.x = 360;
         this.y = 400;
-        this.w = 100;
-        this.h = 100;
+        this.w = 80;
+        this.h = 80;
         this.img = new Image();
-        this.img.src = "./images/player.png";
+        this.img.src = "./images/girl-running-away.png";
         this.speed = 20;
     }
 

@@ -28,7 +28,9 @@ class Game {
             canvas.style.display = "none";
             counter.style.display = "none";
             gameOverScreen.style.display = "flex"
-            points.innerText = "0";
+            // points.innerText = "0";
+            gameOverPoints.innerText = points.innerText;
+            gameOverCounter.style.display = "block";
             this.audio.pause();
 
         }
