@@ -11,6 +11,9 @@ class Game {
         this.clothelineArr = [];
         this.boxArr = [];
         this.shootArr = [];
+
+        this.audio = new Audio();
+        this.audio.src = "./audio/game-audio.mp3";
         
         this.isGameOn = true;
         
@@ -26,6 +29,7 @@ class Game {
             counter.style.display = "none";
             gameOverScreen.style.display = "flex"
             points.innerText = "0";
+            this.audio.pause();
 
         }
 
@@ -161,6 +165,8 @@ class Game {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         //. 2. Acciones o movimiento de los elementos
+
+        this.audio.play();
 
         this.partner.movePartner();
 
