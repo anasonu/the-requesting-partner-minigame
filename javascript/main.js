@@ -8,6 +8,7 @@ const initialScreen = document.querySelector("#splash-screen");
 const gameOverScreen = document.querySelector("#gameover-screen");
 const counter = document.querySelector(".counter");
 const points = document.querySelector(".counter span");
+let intervalId;
 
 let game;
 
@@ -20,6 +21,7 @@ const startGame = () => {
     counter.style.display = "block";
 
     game = new Game();
+    game.addNewShoot();
     game.gameLoop();
 }
 

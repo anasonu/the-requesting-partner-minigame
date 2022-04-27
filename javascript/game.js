@@ -2,7 +2,7 @@ class Game {
     constructor() {
         // Todas las propiedades del juego
         this.bg = new Image();
-        this.bg.src = "/images/bg.png";
+        this.bg.src = "./images/bg.png";
         this.player = new Player();
         this.partner = new Partner();
        
@@ -21,9 +21,11 @@ class Game {
     gameOverCollision = () => {
         if(this.player.x <= this.partner.x) {
             this.isGameOn = false;
+            clearInterval(intervalId);
             canvas.style.display = "none";
             counter.style.display = "none";
             gameOverScreen.style.display = "flex"
+            points.innerText = "0";
 
         }
 
@@ -104,14 +106,18 @@ class Game {
     }
 
     addNewShoot = () => {
-        if(this.player.x <= 170) {
-            return false; // => Cuando el jugador retrocede hasta cierto punto, el personaje de atrás deja de disparar.
-        }
 
-        if(this.shootArr.length === 0 || this.shootArr[this.shootArr.length - 1].x > 1000) {
-            let newShoot = new Shoot()
-            this.shootArr.push(newShoot);
-        }
+
+        intervalId = setInterval(() => {
+            if(this.player.x <= 160) {
+                return false; // => Cuando el jugador retrocede hasta cierto punto, el personaje de atrás deja de disparar.
+            }
+            // console.log(this.shootArr.length)
+            if(this.shootArr.length === 0 || this.shootArr[this.shootArr.length - 1].x > 1000) {
+                let newShoot = new Shoot();
+                this.shootArr.push(newShoot);
+            }
+            }, 3000)
     }
 
     addNewToiletPaper = () => {
@@ -181,7 +187,7 @@ class Game {
         this.shootArr.forEach((eachShoot) => {
             eachShoot.moveShoot();
         });
-        this.addNewShoot();
+        // this.addNewShoot();
         
 
         // 3. Chequear colisiones

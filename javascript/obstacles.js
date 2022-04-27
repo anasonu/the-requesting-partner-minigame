@@ -129,12 +129,13 @@ class Shoot {
         this.h = 40;
 
         const images = [
-            { src: "../images/help-call.png", width: 120, },
-            { src: "../images/toilet-paper-call.png", width: 200, },
-            { src: "../images/bored-call.png", width: 120, },
-            { src: "../images/keys-call.png", width: 170, },
-            { src: "../images/sick-call.png", width: 120, },
+            { src: "./images/help-call.png", width: 120, },
+            { src: "./images/toilet-paper-call.png", width: 200, },
+            { src: "./images/bored-call.png", width: 120, },
+            { src: "./images/keys-call.png", width: 170, },
+            { src: "./images/sick-call.png", width: 120, },
         ];
+
         const random = Math.floor(Math.random() * images.length);
         const shootCall = images[random];
         this.img = new Image();
