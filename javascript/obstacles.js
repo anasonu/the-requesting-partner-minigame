@@ -6,13 +6,12 @@ class ToiletPaper {
         this.w = 40;
         this.h = 40;
         this.img = new Image();
-        // this.img.src = "./images/.png";
+        this.img.src = "./images/toilet-paper.png";
         this.speed = 2;
     }
 
     drawToiletPaper = () => {
-        ctx.fillStyle = "white";
-        ctx.fillRect(this.x, this.y, this.w, this.h);
+        ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
     }
 
     moveToiletPaper = () => {
@@ -34,16 +33,15 @@ class Dog {
         // Múltiples propiedades del player
         this.x = canvas.width;
         this.y = positionY;
-        this.w = 40;
-        this.h = 40;
+        this.w = 60;
+        this.h = 60;
         this.img = new Image();
-        // this.img.src = "./images/.png";
+        this.img.src = "./images/thor.png";
         this.speed = 1.5;
     }
 
     drawDog = () => {
-        ctx.fillStyle = "orange";
-        ctx.fillRect(this.x, this.y, this.w, this.h);
+        ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
     }
 
     moveDog = () => {
@@ -66,15 +64,14 @@ class Clotheline {
         this.x = canvas.width;
         this.y = positionY;
         this.w = 40;
-        this.h = 40;
+        this.h = 50;
         this.img = new Image();
-        // this.img.src = "./images/.png";
+        this.img.src = "./images/sock.png";
         this.speed = 2;
     }
 
     drawClotheline = () => {
-        ctx.fillStyle = "purple";
-        ctx.fillRect(this.x, this.y, this.w, this.h);
+        ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
     }
 
     moveClotheline = () => {
@@ -95,16 +92,15 @@ class Box {
     constructor (positionY) {
         this.x = canvas.width;
         this.y = positionY;
-        this.w = 40;
-        this.h = 40;
+        this.w = 80;
+        this.h = 80;
         this.img = new Image();
-        // this.img.src = "./images/.png";
+        this.img.src = "./images/box.png";
         this.speed = 1.5;
     }
 
     drawBox = () => {
-        ctx.fillStyle = "green";
-        ctx.fillRect(this.x, this.y, this.w, this.h);
+        ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
     }
 
     moveBox = () => {
