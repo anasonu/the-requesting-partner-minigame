@@ -1,7 +1,7 @@
 # THE REQUESTING PARTNER
 
-## Deploy (this link will be added later)
-[Link Deploy]()
+## Deploy
+[Link Deploy](https://anasonu.github.io/the-requesting-partner-minigame/)
 
 ## Description
 
@@ -84,17 +84,31 @@ Avoid every obstacle and ignore your partner calls as long as you can!
 
 ## States y States Transitions
 
-- List here the different pages your game will have. For example: Start Screen, Game Screen, Win Screen, Lose Screen, others.
+- Initial screen
+- Game screen
+- Game Over screen
 
-## Task (Optional)
+## Task
 
-- List of individual Tasks you will need to finish the game from zero to an amazing game!
-- Note: If using Trello or github proyect to keep track of tasks, then there is no need to fill this part.
+- Add player
+- Ability to move player up and down
+- Add partner
+- Make partner move automatically following the player
+- Add obstacles
+- Make obstacles appear randomly
+- Add collisions
+- Add shoots from the partner
+- Make images from shoots appear randomly
+- Add 3 lives on top of the screen
+- Add lives functionality
+- Draw background, player, partner and obstacles
+- Add points counter
+- Increase velocity when receiving X points
+- Create initial screen
+- Create game over screen
+- Add music
 
-## Extra Links (The links can be added later when available)
-
-### Trello
-[Link url](https://trello.com/b/CWviY2zv/kraken-brigade-project)
+## Extra Links
 
 ### Slides
 [Link Slides.com](https://docs.google.com/presentation/d/138o01hAz-0gXepN78RsDgse12HiiuN7Fz_N_hJnI9_g/edit?usp=sharing)

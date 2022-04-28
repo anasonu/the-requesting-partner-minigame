@@ -272,12 +272,13 @@ class Game {
             eachBox.drawBox();
         })
 
-        this.shootArr.forEach((eachShoot) => {
-            eachShoot.drawShoot();
-        })
 
         this.heartArr.forEach((eachHeart) => {
             eachHeart.drawHeart();
+        })
+
+        this.shootArr.forEach((eachShoot) => {
+            eachShoot.drawShoot();
         })
 
         // 5. Control y recursividad
