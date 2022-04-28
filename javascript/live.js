@@ -3,9 +3,9 @@ class Live {
         this.x = positionX;
         this.y = 40; 
         this.w = 40;
-        this.h = 40;
+        this.h = 35;
         this.img = new Image();
-        this.img.src = "./images/girl-running-away.png";
+        this.img.src = "./images/heart.png";
     }
 
     drawLive = () => {

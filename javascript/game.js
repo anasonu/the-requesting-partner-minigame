@@ -1,19 +1,26 @@
 class Game {
-    constructor() {
+    constructor(isGirlPlayer) {
         // Todas las propiedades del juego
         this.bg = new Image();
         this.bg.src = "./images/bg.png";
-        this.player = new Player();
-        this.partner = new Partner();
+
+        let playerImg = "./images/girl-running-away.png";
+        let partnerImg = "./images/boy-chasing.png";
+
+        if(isGirlPlayer === false) {
+            playerImg = "./images/boy-running-away.png";
+            partnerImg = "./images/girl-chasing.png";
+        }
+
+        this.player = new Player(playerImg);
+        this.partner = new Partner(partnerImg);
+        
         this.live = new Live();
 
         this.liveArr = [
             new Live(canvas.width - 80),
             new Live(canvas.width - 140),
             new Live(canvas.width - 200),
-            // new Live(canvas.width - 200),
-            // new Live(canvas.width - 140),
-            // new Live(canvas.width - 80),
         ];
        
         this.toiletPaperArr = [];   
@@ -40,11 +47,14 @@ class Game {
             clearInterval(intervalHeartId);
             canvas.style.display = "none";
             counter.style.display = "none";
-            gameOverScreen.style.display = "flex"
+            gameOverScreen.style.display = "flex";
             gameOverPoints.innerText = points.innerText;
             gameOverCounter.style.display = "block";
+            if(!isGirlPlayer) {
+                girlCrying.style.display = "none";
+                boyCrying.style.display = "block";
+            }
             this.audio.pause();
-
         }
 
         this.toiletPaperArr.forEach((eachToiletPaper, index) => {

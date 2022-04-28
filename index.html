@@ -21,7 +21,12 @@
             <p>Run as fast as you can and try to avoid the requests of your partner by turning a deaf ear to their help requests.</p>
             <p><span class="instructions">Use up ⬆️ and down ⬇️ arrows</span> in your keyboard to jump over the obstacles and avoid your partner calls so they can’t reach you!</p>
             <p>Don't forget to take the hearts ♥️ to recover distance</p>
-            <button id="start-btn">Start ignoring my partner</button>
+            <p id="choose-player">Choose player now and start ignoring your partner!</p>
+            <!-- <button id="start-btn">Start ignoring my partner</button> -->
+            <div id="start-btns-container">
+                <button id="start-boy">Boy</button>
+                <button id="start-girl">Girl</button>
+            </div>
         </div>
         
         <!-- GAME SCREEN -->
@@ -32,7 +37,8 @@
         <div id="gameover-screen" class="container">
             <!-- <img src="./images/gameover.png" width="500" alt="logo"> -->
             <h2>GAME OVER!</h2>
-            <img src="./images/game-over.png" alt="Game over image">
+            <img id="girl-crying" src="./images/girl-crying.png" alt="Game over image" />
+            <img id="boy-crying" src="./images/boy-crying.png" alt="Game over image" />
             <h2 id="final-counter" class="counter">Points: <span>0</span></h2>
             <p>Oh no! Your partner got you!</p>
             <p>Now you have to help them and do some extra chores... Sorry for you!</p>

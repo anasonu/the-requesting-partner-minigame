@@ -1,12 +1,12 @@
 class Partner {
-    constructor() {
+    constructor(partnerImage) {
     // Múltiples propiedades del partner
         this.x = 60;
         this.y = 400;
         this.w = 80;
         this.h = 80;
         this.img = new Image();
-        this.img.src = "./images/boy-chasing.png";
+        this.img.src = partnerImage; // "./images/boy-chasing.png";
         this.speed = 1;
     }
 
