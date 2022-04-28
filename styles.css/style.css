@@ -10,6 +10,11 @@ body {
     text-transform: uppercase;
     font-size: 40px;
   }
+
+  .instructions {
+    font-weight: bold;
+    text-decoration: underline;
+  }
   
   #my-canvas {
     background-color: darkgray;

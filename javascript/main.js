@@ -10,7 +10,8 @@ const counter = document.querySelector(".counter");
 const points = document.querySelector(".counter span");
 const gameOverCounter = document.querySelector("#final-counter");
 const gameOverPoints = document.querySelector("#final-counter span");
-let intervalId;
+let intervalShootId;
+let intervalHeartId;
 
 let game;
 
@@ -25,6 +26,7 @@ const startGame = () => {
 
     game = new Game();
     game.addNewShoot();
+    game.addNewHeart();
     game.gameLoop();
 }
 

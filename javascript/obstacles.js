@@ -149,3 +149,32 @@ class Shoot {
         this.x += this.speed;
     }    
 }
+
+class Heart {
+    constructor(positionY) {
+        this.x = canvas.width;
+        this.y = positionY;
+        this.w = 40;
+        this.h = 35;
+        this.img = new Image();
+        this.img.src = "./images/heart.png";
+        this.speed = 1.5;
+    }
+
+    drawHeart = () => {
+        ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
+    }
+
+    moveHeart = () => {
+        if(Number(points.innerText) >= 10 && Number(points.innerText) <= 30) {
+            this.speed = 2.5;
+        } else if(Number(points.innerText) >= 31 && Number(points.innerText) <= 50) {
+            this.speed = 3.5;
+        } else if(Number(points.innerText) > 50 && Number(points.innerText) <= 100) {
+            this.speed = 4.5;
+        } else if(Number(points.innerText) > 100) {
+            this.speed = 5.5;
+        }
+        this.x = this.x - this.speed;
+    }
+}

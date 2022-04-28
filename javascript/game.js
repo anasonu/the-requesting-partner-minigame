@@ -5,15 +5,27 @@ class Game {
         this.bg.src = "./images/bg.png";
         this.player = new Player();
         this.partner = new Partner();
+        this.live = new Live();
+
+        this.liveArr = [
+            new Live(canvas.width - 80),
+            new Live(canvas.width - 140),
+            new Live(canvas.width - 200),
+            // new Live(canvas.width - 200),
+            // new Live(canvas.width - 140),
+            // new Live(canvas.width - 80),
+        ];
        
         this.toiletPaperArr = [];   
         this.dogArr = [];
         this.clothelineArr = [];
         this.boxArr = [];
         this.shootArr = [];
+        this.heartArr = [];
 
         this.audio = new Audio();
         this.audio.src = "./audio/game-audio.mp3";
+        this.audio.volume = 0.1;
         
         this.isGameOn = true;
         
@@ -22,13 +34,13 @@ class Game {
     // Función para las colisiones
 
     gameOverCollision = () => {
-        if(this.player.x <= this.partner.x) {
+        if(this.liveArr.length === 0) {
             this.isGameOn = false;
-            clearInterval(intervalId);
+            clearInterval(intervalShootId);
+            clearInterval(intervalHeartId);
             canvas.style.display = "none";
             counter.style.display = "none";
             gameOverScreen.style.display = "flex"
-            // points.innerText = "0";
             gameOverPoints.innerText = points.innerText;
             gameOverCounter.style.display = "block";
             this.audio.pause();
@@ -42,6 +54,7 @@ class Game {
                 this.player.h + this.player.y > eachToiletPaper.y) {
                     this.player.x -= 100;
                     this.toiletPaperArr.splice(index, 1);
+                    this.liveArr.pop();
                 }
             
             if(this.player.x > eachToiletPaper.x) {
@@ -57,6 +70,7 @@ class Game {
                 this.player.h + this.player.y > eachDog.y) {
                     this.player.x -= 100;
                     this.dogArr.splice(index, 1);
+                    this.liveArr.pop();
                 }
             
             if(this.player.x > eachDog.x) {
@@ -72,6 +86,7 @@ class Game {
                 this.player.h + this.player.y > eachClotheline.y) {
                     this.player.x -= 100;
                     this.clothelineArr.splice(index, 1);
+                    this.liveArr.pop();
                 }
 
             if(this.player.x > eachClotheline.x) {
@@ -87,13 +102,14 @@ class Game {
                 this.player.h + this.player.y > eachBox.y) {
                     this.player.x -= 100;
                     this.boxArr.splice(index, 1);
+                    this.liveArr.pop();
                 }
 
             if(this.player.x > eachBox.x) {
                 this.boxArr.splice(index, 1);
                 points.innerText = Number(points.innerText) + 1;
             }  
-        })
+        });
 
         this.shootArr.forEach((eachShoot, index) => {
             if(this.player.x < eachShoot.x + eachShoot.w &&
@@ -102,19 +118,44 @@ class Game {
                 this.player.h + this.player.y > eachShoot.y) {
                     this.player.x -= 100;
                     this.shootArr.splice(index, 1);
+                    this.liveArr.pop();
                 }
 
             if(eachShoot.x > canvas.width) {
                 this.shootArr.splice(index, 1);
                 points.innerText = Number(points.innerText) + 1;
             }  
+        });
+
+        this.heartArr.forEach((eachHeart, index) => {
+            if(this.player.x >= 360){
+                this.heartArr.shift();
+                return;
+            }
+
+            if(this.player.x < eachHeart.x + eachHeart.w &&
+                this.player.x + this.player.w > eachHeart.x &&
+                this.player.y < eachHeart.y + eachHeart.h &&
+                this.player.h + this.player.y > eachHeart.y) {
+                    this.player.x += 100;
+                    this.heartArr.splice(index, 1);
+                    this.liveArr.push(new Live(this.liveArr[this.liveArr.length - 1].x - this.liveArr[this.liveArr.length - 1].w- 20));
+                }
         })
+    }
+
+    addNewHeart = () => {
+        intervalHeartId = setInterval(() => {
+            let randomPosition = Math.random() * ((canvas.height - 40) - 300 + 1) + 300;
+            let newHeart = new Heart(randomPosition);
+            this.heartArr.push(newHeart);
+        }, 5000);
     }
 
     addNewShoot = () => {
 
 
-        intervalId = setInterval(() => {
+        intervalShootId = setInterval(() => {
             if(this.player.x <= 160) {
                 return false; // => Cuando el jugador retrocede hasta cierto punto, el personaje de atrás deja de disparar.
             }
@@ -195,14 +236,23 @@ class Game {
         this.shootArr.forEach((eachShoot) => {
             eachShoot.moveShoot();
         });
-        // this.addNewShoot();
+
+        this.heartArr.forEach((eachHeart) => {
+            eachHeart.moveHeart();
+        });
         
 
         // 3. Chequear colisiones
         this.gameOverCollision();
 
         // 4. Dibujar los elementos
+        
         ctx.drawImage(this.bg, 0, 0, canvas.width, canvas.height);
+
+        this.liveArr.forEach((eachLive) => {
+            eachLive.drawLive();
+        })
+
         this.partner.drawPartner();
         this.player.drawPlayer();
         
@@ -224,6 +274,10 @@ class Game {
 
         this.shootArr.forEach((eachShoot) => {
             eachShoot.drawShoot();
+        })
+
+        this.heartArr.forEach((eachHeart) => {
+            eachHeart.drawHeart();
         })
 
         // 5. Control y recursividad
