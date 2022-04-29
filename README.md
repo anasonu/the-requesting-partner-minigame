@@ -43,6 +43,7 @@ Avoid every obstacle and ignore your partner calls as long as you can!
 - Game () {
     this.player;
 }
+- gameOverCollisions () {}
 - checkCollisions () {}
 - addNewObstacles () {}
 - gameLoop () {}
@@ -111,4 +112,4 @@ Avoid every obstacle and ignore your partner calls as long as you can!
 ## Extra Links
 
 ### Slides
-[Link Slides.com](https://docs.google.com/presentation/d/138o01hAz-0gXepN78RsDgse12HiiuN7Fz_N_hJnI9_g/edit?usp=sharing)
+[Link Slides.com](https://docs.google.com/presentation/d/1AJoF1HI_mlncFoh9JYloynd4mDuW9EBenKvFIHu5DuI/edit#slide=id.g1268efcbd53_0_71)
